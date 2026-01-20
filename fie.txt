@@ -1,0 +1,221 @@
+rag-pdf-chatbot/
+│
+├── backend/                                    # FastAPI Backend
+│   ├── app/
+│   │   ├── __init__.py                        # Empty (package marker)
+│   │   ├── main.py                            # FastAPI app entry point
+│   │   │
+│   │   ├── api/                               # API Routes
+│   │   │   ├── __init__.py                    # Empty
+│   │   │   ├── upload.py                      # PDF upload endpoint
+│   │   │   └── chat.py                        # Chat/query endpoint
+│   │   │
+│   │   ├── core/                              # Core Configuration
+│   │   │   ├── __init__.py                    # Empty
+│   │   │   └── config.py                      # App configs
+│   │   │
+│   │   ├── rag/                               # RAG Pipeline
+│   │   │   ├── __init__.py                    # Empty
+│   │   │   ├── loader.py                      # PDF text extraction
+│   │   │   ├── chunker.py                     # Text chunking
+│   │   │   ├── embeddings.py                  # Embedding model
+│   │   │   ├── vector_store.py                # FAISS operations
+│   │   │   ├── retriever.py                   # Similarity search
+│   │   │   ├── prompt.py                      # Prompt templates
+│   │   │   └── llm.py                         # LLaMA/Mistral model
+│   │   │
+│   │   ├── schemas/                           # Pydantic Models
+│   │   │   ├── __init__.py                    # Empty
+│   │   │   ├── chat.py                        # Chat request/response
+│   │   │   └── upload.py                      # Upload response
+│   │   │
+│   │   ├── utils/                             # Helper Functions
+│   │   │   ├── __init__.py                    # Empty
+│   │   │   └── file_utils.py                  # File operations
+│   │   │
+│   │   └── data/                              # Runtime Data Storage
+│   │       ├── pdfs/                          # Uploaded PDFs
+│   │       │   └── .gitkeep                   # Keep folder in git
+│   │       └── faiss_index/                   # FAISS vector DB
+│   │           └── .gitkeep                   # Keep folder in git
+│   │
+│   ├── requirements.txt                       # Python dependencies
+│   └── .env                                   # Environment variables
+│
+├── frontend/                                   # React Frontend
+│   ├── public/                                # Static assets
+│   │
+│   ├── src/
+│   │   ├── components/                        # React Components
+│   │   │   ├── ChatWindow.jsx                 # Chat interface
+│   │   │   ├── MessageBubble.jsx              # Message display
+│   │   │   └── PdfUploader.jsx                # PDF upload UI
+│   │   │
+│   │   ├── pages/                             # Page Components
+│   │   │   └── Home.jsx                       # Main page
+│   │   │
+│   │   ├── services/                          # API Integration
+│   │   │   └── api.js                         # Backend API calls
+│   │   │
+│   │   ├── styles/                            # Styling
+│   │   │   └── global.css                     # Global CSS
+│   │   │
+│   │   ├── App.jsx                            # Root component
+│   │   └── main.jsx                           # React entry point
+│   │
+│   ├── index.html                             # HTML entry
+│   ├── package.json                           # npm dependencies
+│   └── vite.config.js                         # Vite config
+│
+├── README.md                                   # Documentation
+└── .gitignore                                  # Git ignore rules
+
+
+═══════════════════════════════════════════════════════════════════════
+📊 FILE COUNT SUMMARY
+═══════════════════════════════════════════════════════════════════════
+
+Backend Python Files:       14 files
+Backend Config Files:        2 files (requirements.txt, .env)
+Backend __init__.py:         6 files (package markers)
+
+Frontend JS/JSX Files:       8 files
+Frontend Config Files:       3 files (package.json, vite.config.js, index.html)
+Frontend CSS Files:          1 file
+
+Documentation:               2 files (README.md, .gitignore)
+
+TOTAL:                       36 files
+
+
+═══════════════════════════════════════════════════════════════════════
+📁 DIRECTORY PURPOSES
+═══════════════════════════════════════════════════════════════════════
+
+backend/app/api/             → API endpoint handlers (upload, chat)
+backend/app/core/            → Application configuration
+backend/app/rag/             → Complete RAG pipeline logic
+backend/app/schemas/         → Pydantic models for validation
+backend/app/utils/           → Helper/utility functions
+backend/app/data/            → Runtime storage (PDFs + FAISS)
+
+frontend/src/components/     → Reusable React UI components
+frontend/src/pages/          → Full page components
+frontend/src/services/       → Backend API integration layer
+frontend/src/styles/         → CSS styling files
+
+
+═══════════════════════════════════════════════════════════════════════
+⚙️ IMPORTANT: CREATE THESE EMPTY FILES
+═══════════════════════════════════════════════════════════════════════
+
+These __init__.py files are REQUIRED for Python to recognize directories as packages:
+
+touch backend/app/__init__.py
+touch backend/app/api/__init__.py
+touch backend/app/core/__init__.py
+touch backend/app/rag/__init__.py
+touch backend/app/schemas/__init__.py
+touch backend/app/utils/__init__.py
+
+
+═══════════════════════════════════════════════════════════════════════
+📂 CREATE THESE DIRECTORIES
+═══════════════════════════════════════════════════════════════════════
+
+mkdir -p backend/app/data/pdfs
+mkdir -p backend/app/data/faiss_index
+
+
+═══════════════════════════════════════════════════════════════════════
+🔄 RAG PIPELINE FILE FLOW
+═══════════════════════════════════════════════════════════════════════
+
+USER ACTION: Upload PDF
+    ↓
+api/upload.py → utils/file_utils.py (Save PDF)
+    ↓
+rag/loader.py (Extract text from PDF)
+    ↓
+rag/chunker.py (Split into chunks with overlap)
+    ↓
+rag/embeddings.py (Load embedding model)
+    ↓
+rag/vector_store.py (Create FAISS index, save to disk)
+    ↓
+✅ PDF Indexed and Ready
+
+
+USER ACTION: Ask Question
+    ↓
+api/chat.py (Receive question)
+    ↓
+rag/retriever.py (Search FAISS for similar chunks)
+    ↓
+rag/prompt.py (Build prompt with context)
+    ↓
+rag/llm.py (Generate answer with LLaMA/Mistral)
+    ↓
+schemas/chat.py (Format response)
+    ↓
+✅ Answer Returned to User
+
+
+═══════════════════════════════════════════════════════════════════════
+🚀 SETUP COMMANDS (After Download & Extract)
+═══════════════════════════════════════════════════════════════════════
+
+1. Install Ollama (from ollama.com):
+   ollama pull mistral
+
+2. Backend Setup:
+   cd backend
+   python -m venv venv
+   source venv/bin/activate        # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+
+3. Frontend Setup:
+   cd frontend
+   npm install
+
+4. Run the Project:
+   Terminal 1: ollama run mistral
+   Terminal 2: cd backend && uvicorn app.main:app --reload
+   Terminal 3: cd frontend && npm run dev
+
+5. Open Browser:
+   http://localhost:5173
+
+
+═══════════════════════════════════════════════════════════════════════
+📝 KEY FILES EXPLAINED
+═══════════════════════════════════════════════════════════════════════
+
+backend/app/main.py              → FastAPI app, CORS, route registration
+backend/app/api/upload.py        → Handles PDF upload & processing
+backend/app/api/chat.py          → Handles chat queries
+backend/app/rag/loader.py        → Extracts text from PDFs
+backend/app/rag/chunker.py       → Splits text into manageable chunks
+backend/app/rag/embeddings.py    → Loads HuggingFace embedding model
+backend/app/rag/vector_store.py  → FAISS index creation/loading
+backend/app/rag/retriever.py     → Retrieves relevant chunks
+backend/app/rag/prompt.py        → Creates prompts for LLM
+backend/app/rag/llm.py           → LLaMA/Mistral integration
+backend/requirements.txt         → All Python dependencies
+
+frontend/src/services/api.js     → API calls to backend
+frontend/src/components/         → UI components
+frontend/src/App.jsx             → Root React component
+frontend/package.json            → npm dependencies
+
+
+═══════════════════════════════════════════════════════════════════════
+✅ WHAT YOU GET
+═══════════════════════════════════════════════════════════════════════
+
+✓ Complete working RAG chatbot
+✓ Professional file organization
+✓ Production-ready code structure
+✓ Full documentation
+✓ Ready to deploy
+✓ Interview-ready project

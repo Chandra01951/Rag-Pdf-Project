@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# FastAPI
+.env
+*.db
+*.sqlite
+
+# Data directories
+backend/app/data/pdfs/*
+backend/app/data/faiss_index/*
+!backend/app/data/pdfs/.gitkeep
+!backend/app/data/faiss_index/.gitkeep
+
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
