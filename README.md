@@ -189,33 +189,3 @@ rag-pdf-chatbot/
 5. **Full-Stack**: "I built a complete full-stack application with FastAPI backend and React frontend, ensuring clean separation of concerns."
 
 6. **Production Practices**: "The code follows production best practices with proper error handling, schema validation, and CORS configuration."
-
-## Troubleshooting
-
-### Backend Issues
-- **ImportError**: Ensure all `__init__.py` files are created in directories
-- **Module not found**: Check virtual environment is activated
-- **FAISS errors**: Try reinstalling with `pip install faiss-cpu --force-reinstall`
-
-### Frontend Issues
-- **CORS errors**: Ensure backend CORS middleware is configured
-- **API connection failed**: Verify backend is running on port 8000
-- **Build errors**: Delete `node_modules` and run `npm install` again
-
-### Ollama Issues
-- **Model not found**: Run `ollama pull mistral`
-- **Connection refused**: Ensure Ollama is running with `ollama run mistral`
-- **Slow responses**: First query may be slow due to model loading
-
-## Future Enhancements
-
-- [ ] Multi-PDF support
-- [ ] Chat history persistence
-- [ ] User authentication
-- [ ] Document source citations
-- [ ] Export chat conversations
-- [ ] Deployment to cloud platforms
-
-## License
-
-MIT License
